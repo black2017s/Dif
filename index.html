@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIF TJEJEN</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #960000;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #960000, #640000);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .header {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 2px 2px 5px black;
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            margin: 15px 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            border-radius: 15px;
+            border: 3px solid #ff0000;
+        }
+
+        .info {
+            font-size: 18px;
+            margin-top: 10px;
+            background-color: #480000;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px black;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: block;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            color: black;
+            background-color: #fff;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #ff0000;
+        }
+
+        .exclusive {
+            background-color: #fff;
+            color: #000;
+            animation: shake 1.5s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">DIF TJEJEN</div>
+
+        <div class="image-container">
+            <img src="./photo_5879773480940061647_x.jpg" alt="Profile Image">
+        </div>
+
+        <div class="info">
+            <!-- <div>Carla Vagnen</div> -->
+            <div id="location">Loading location...</div>
+            <div>5 minutes ago</div>
+        </div>
+
+        <div class="buttons">
+            <a href="https://onlyfans.com/diftjejenvip/c14" class="button">Privata sidan</a>
+            <a href="https://stripchat.com/Dif-tjejen/follow-me" class="button exclusive">CAM</a>
+        </div>
+    </div>
+
+    <script>
+        // استخدام Fetch API للحصول على معلومات الموقع من ipgeolocation.io
+        const apiKey = '2359385f1106449aa7ade1b57167b4fb'; // أدخل مفتاح API هنا
+        fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const location = `${data.city}, ${data.state_prov}, ${data.country_name}`; // تجميع المدينة، المحافظة، والدولة
+                document.getElementById('location').textContent = location; // عرض الموقع
+            })
+            .catch(error => {
+                console.error('Error fetching the location:', error);
+                document.getElementById('location').textContent = 'Unable to fetch location'; // رسالة في حالة الخطأ
+            });
+    </script>
+</body>
+</html>
